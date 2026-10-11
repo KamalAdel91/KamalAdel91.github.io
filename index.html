@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kamal Adel - Business Intelligence & ERP Architect</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      color: #e0e0e0;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 100px 20px;
+      background: linear-gradient(180deg, rgba(48,43,99,0.5), rgba(36,36,62,0.5));
+      border-radius: 20px;
+      margin-bottom: 80px;
+      animation: fadeInDown 1s ease-out;
+    }
+    
+    .hero h1 {
+      font-size: 4em;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .hero > p:first-of-type {
+      font-size: 1.3em;
+      color: #a0a0c0;
+      margin-bottom: 10px;
+    }
+    
+    .hero > p:last-of-type {
+      color: #764ba2;
+      font-size: 0.95em;
+      margin-bottom: 30px;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn {
+      padding: 12px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: 2px solid #667eea;
+      cursor: pointer;
+      display: inline-block;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: #667eea;
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(102, 126, 234, 0.1);
+      transform: translateY(-3px);
+    }
+    
+    /* Section */
+    .section {
+      margin-bottom: 80px;
+      animation: fadeIn 1.5s ease-out;
+    }
+    
+    .section h2 {
+      font-size: 2.5em;
+      margin-bottom: 40px;
+      color: #667eea;
+      border-bottom: 3px solid #667eea;
+      padding-bottom: 15px;
+      display: inline-block;
+    }
+    
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .skill-card {
+      background: linear-gradient(135deg, rgba(102,126,234,0.1), rgba(118,75,162,0.1));
+      padding: 30px;
+      border-radius: 15px;
+      border: 2px solid rgba(102, 126, 234, 0.2);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .skill-card:hover {
+      transform: translateY(-10px);
+      border-color: #667eea;
+      box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+      background: linear-gradient(135deg, rgba(102,126,234,0.15), rgba(118,75,162,0.15));
+    }
+    
+    .skill-card h3 {
+      color: #667eea;
+      margin-bottom: 15px;
+      font-size: 1.3em;
+    }
+    
+    .skill-card p {
+      color: #b0b0d0;
+      line-height: 1.8;
+    }
+    
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .project-card {
+      background: linear-gradient(135deg, rgba(102,126,234,0.08), rgba(118,75,162,0.08));
+      border: 2px solid rgba(102, 126, 234, 0.15);
+      border-radius: 15px;
+      padding: 30px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+    }
+    
+    .project-card:hover {
+      transform: translateY(-15px);
+      border-color: #667eea;
+      box-shadow: 0 20px 40px rgba(102, 126, 234, 0.25);
+    }
+    
+    .project-card h3 {
+      color: #667eea;
+      margin: 15px 0;
+      font-size: 1.4em;
+    }
+    
+    .project-card p {
+      color: #a0a0c0;
+      margin-bottom: 15px;
+    }
+    
+    .tech-tags {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    
+    .tag {
+      background: rgba(102, 126, 234, 0.2);
+      color: #667eea;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.85em;
+      border: 1px solid rgba(102, 126, 234, 0.3);
+    }
+    
+    /* Stats */
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .stat-box {
+      background: linear-gradient(135deg, rgba(102,126,234,0.1), rgba(118,75,162,0.1));
+      padding: 30px;
+      border-radius: 15px;
+      border: 2px solid rgba(102, 126, 234, 0.2);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    
+    .stat-box:hover {
+      border-color: #667eea;
+      transform: scale(1.05);
+    }
+    
+    .stat-emoji {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+    
+    .stat-label {
+      color: #a0a0c0;
+      margin-top: 10px;
+    }
+    
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 40px 20px;
+      border-top: 2px solid rgba(102, 126, 234, 0.2);
+      margin-top: 80px;
+    }
+    
+    .footer p {
+      color: #a0a0c0;
+    }
+    
+    /* Animations */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5em;
+      }
+      .section h2 {
+        font-size: 1.8em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Hero Section -->
+    <div class="hero">
+      <h1>Kamal Adel</h1>
+      <p>Business Intelligence & Enterprise Systems Architect</p>
+      <p>Transforming Financial Complexity into Intelligent Solutions</p>
+      <div class="cta-buttons">
+        <a href="https://www.linkedin.com/in/YOUR-LINKEDIN" class="btn btn-primary">LinkedIn</a>
+        <a href="mailto:YOUR-EMAIL" class="btn btn-secondary">Contact Me</a>
+        <a href="https://www.facebook.com/YOUR-PAGE" class="btn btn-secondary">Mr. Excel</a>
+      </div>
+    </div>
+
+    <!-- About Section -->
+    <div class="section">
+      <h2>👨‍💼 About Me</h2>
+      <p style="font-size: 1.1em; color: #b0b0d0; margin-top: 20px; line-height: 1.9;">
+        I'm a <strong>Financial Systems Specialist</strong> with deep expertise in designing and implementing enterprise-grade solutions. 
+        With an accounting and tax background, I've evolved into a <strong>Business Intelligence strategist</strong> who bridges the gap between 
+        complex financial needs and intelligent system architecture.<br><br>
+        I specialize in <strong>multi-company ERP implementations</strong>, <strong>system migrations</strong>, and building 
+        <strong>advanced financial analytics platforms</strong> that drive strategic decision-making for organizations across Egypt and the Gulf region.
+      </p>
+    </div>
+
+    <!-- Core Competencies -->
+    <div class="section">
+      <h2>🎯 Core Competencies</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3>🏗️ Enterprise System Architecture</h3>
+          <p>Designing scalable multi-company financial systems with ZATCA compliance, advanced automation, and real-time reporting capabilities.</p>
+        </div>
+        <div class="skill-card">
+          <h3>🔄 System Migration & Integration</h3>
+          <p>Leading end-to-end migrations between enterprise platforms while maintaining data integrity, business continuity, and audit compliance.</p>
+        </div>
+        <div class="skill-card">
+          <h3>📊 Financial Analytics & BI</h3>
+          <p>Building intelligent dashboards and reporting frameworks that transform raw financial data into actionable business intelligence.</p>
+        </div>
+        <div class="skill-card">
+          <h3>⚙️ Workflow Automation</h3>
+          <p>Architecting intelligent business process automations that eliminate manual work, reduce errors, and enforce business rules automatically.</p>
+        </div>
+        <div class="skill-card">
+          <h3>💼 Multi-Currency & Multi-Company</h3>
+          <p>Handling complex financial scenarios across multiple legal entities, currencies, and jurisdictions with unified control and reporting.</p>
+        </div>
+        <div class="skill-card">
+          <h3>👥 Custom Development</h3>
+          <p>Building specialized solutions tailored to unique business needs using modern frameworks and best practices in software engineering.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- What I Build -->
+    <div class="section">
+      <h2>🛠️ What I Build</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <h3>Financial Control Systems</h3>
+          <p>Sophisticated accounting platforms with budget enforcement, policy-based validations, and real-time financial control across organizations.</p>
+          <div class="tech-tags">
+            <span class="tag">ERP Implementation</span>
+            <span class="tag">Financial Control</span>
+            <span class="tag">Automation</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <h3>Advanced Reporting Engines</h3>
+          <p>High-performance reporting frameworks with intelligent filtering, visualization, and export capabilities for operational and executive use.</p>
+          <div class="tech-tags">
+            <span class="tag">Analytics</span>
+            <span class="tag">Data Visualization</span>
+            <span class="tag">Reporting</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <h3>Workflow Intelligence</h3>
+          <p>Intelligent systems that track business processes with real-time visibility, automated escalations, and comprehensive audit trails.</p>
+          <div class="tech-tags">
+            <span class="tag">Workflow</span>
+            <span class="tag">Process Automation</span>
+            <span class="tag">Tracking</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <h3>Data Integration Platforms</h3>
+          <p>Seamless data flows between systems with automated validation, transformation, and reconciliation for unified analytics.</p>
+          <div class="tech-tags">
+            <span class="tag">Data Integration</span>
+            <span class="tag">ETL</span>
+            <span class="tag">Consolidation</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <h3>HR Management Solutions</h3>
+          <p>Comprehensive HR systems including organizational structure visualization, talent management, and analytics.</p>
+          <div class="tech-tags">
+            <span class="tag">HR Systems</span>
+            <span class="tag">Org Analytics</span>
+            <span class="tag">Talent Mgmt</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <h3>Educational Content</h3>
+          <p>Creating comprehensive learning resources on accounting, financial analysis, business intelligence, and modern data systems.</p>
+          <div class="tech-tags">
+            <span class="tag">Education</span>
+            <span class="tag">Training</span>
+            <span class="tag">Content Creation</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tech Stack -->
+    <div class="section">
+      <h2>⚡ Technology Stack</h2>
+      <div class="stats-container">
+        <div class="stat-box">
+          <div class="stat-emoji">🐍</div>
+          <div class="stat-label">Python & Backend</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-emoji">🌐</div>
+          <div class="stat-label">JavaScript & Frontend</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-emoji">🗄️</div>
+          <div class="stat-label">Database Design</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-emoji">📊</div>
+          <div class="stat-label">Business Intelligence</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-emoji">🔧</div>
+          <div class="stat-label">Enterprise Systems</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-emoji">☁️</div>
+          <div class="stat-label">Cloud Deployment</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>Let's build something amazing together</p>
+      <p style="margin-top: 20px; font-size: 0.9em; color: #764ba2;">💼 Open to exciting projects and collaborations</p>
+    </div>
+  </div>
+</body>
+</html>
