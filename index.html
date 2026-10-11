@@ -1,438 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kamal Adel - Business Intelligence & ERP Architect</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-      color: #e0e0e0;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-    
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 40px 20px;
-    }
-    
-    /* Hero */
-    .hero {
-      text-align: center;
-      padding: 100px 20px;
-      background: linear-gradient(180deg, rgba(48,43,99,0.5), rgba(36,36,62,0.5));
-      border-radius: 20px;
-      margin-bottom: 80px;
-      animation: fadeInDown 1s ease-out;
-    }
-    
-    .hero h1 {
-      font-size: 4em;
-      margin-bottom: 10px;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    
-    .hero > p:first-of-type {
-      font-size: 1.3em;
-      color: #a0a0c0;
-      margin-bottom: 10px;
-    }
-    
-    .hero > p:last-of-type {
-      color: #764ba2;
-      font-size: 0.95em;
-      margin-bottom: 30px;
-    }
-    
-    .cta-buttons {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    
-    .btn {
-      padding: 12px 30px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      border: 2px solid #667eea;
-      cursor: pointer;
-      display: inline-block;
-    }
-    
-    .btn-primary {
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      color: white;
-    }
-    
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
-    }
-    
-    .btn-secondary {
-      background: transparent;
-      color: #667eea;
-    }
-    
-    .btn-secondary:hover {
-      background: rgba(102, 126, 234, 0.1);
-      transform: translateY(-3px);
-    }
-    
-    /* Section */
-    .section {
-      margin-bottom: 80px;
-      animation: fadeIn 1.5s ease-out;
-    }
-    
-    .section h2 {
-      font-size: 2.5em;
-      margin-bottom: 40px;
-      color: #667eea;
-      border-bottom: 3px solid #667eea;
-      padding-bottom: 15px;
-      display: inline-block;
-    }
-    
-    /* Skills Grid */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
-    }
-    
-    .skill-card {
-      background: linear-gradient(135deg, rgba(102,126,234,0.1), rgba(118,75,162,0.1));
-      padding: 30px;
-      border-radius: 15px;
-      border: 2px solid rgba(102, 126, 234, 0.2);
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-    
-    .skill-card:hover {
-      transform: translateY(-10px);
-      border-color: #667eea;
-      box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
-      background: linear-gradient(135deg, rgba(102,126,234,0.15), rgba(118,75,162,0.15));
-    }
-    
-    .skill-card h3 {
-      color: #667eea;
-      margin-bottom: 15px;
-      font-size: 1.3em;
-    }
-    
-    .skill-card p {
-      color: #b0b0d0;
-      line-height: 1.8;
-    }
-    
-    /* Projects */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
-    }
-    
-    .project-card {
-      background: linear-gradient(135deg, rgba(102,126,234,0.08), rgba(118,75,162,0.08));
-      border: 2px solid rgba(102, 126, 234, 0.15);
-      border-radius: 15px;
-      padding: 30px;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(90deg, #667eea, #764ba2);
-    }
-    
-    .project-card:hover {
-      transform: translateY(-15px);
-      border-color: #667eea;
-      box-shadow: 0 20px 40px rgba(102, 126, 234, 0.25);
-    }
-    
-    .project-card h3 {
-      color: #667eea;
-      margin: 15px 0;
-      font-size: 1.4em;
-    }
-    
-    .project-card p {
-      color: #a0a0c0;
-      margin-bottom: 15px;
-    }
-    
-    .tech-tags {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    
-    .tag {
-      background: rgba(102, 126, 234, 0.2);
-      color: #667eea;
-      padding: 5px 12px;
-      border-radius: 20px;
-      font-size: 0.85em;
-      border: 1px solid rgba(102, 126, 234, 0.3);
-    }
-    
-    /* Stats */
-    .stats-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
-    }
-    
-    .stat-box {
-      background: linear-gradient(135deg, rgba(102,126,234,0.1), rgba(118,75,162,0.1));
-      padding: 30px;
-      border-radius: 15px;
-      border: 2px solid rgba(102, 126, 234, 0.2);
-      text-align: center;
-      transition: all 0.3s ease;
-    }
-    
-    .stat-box:hover {
-      border-color: #667eea;
-      transform: scale(1.05);
-    }
-    
-    .stat-emoji {
-      font-size: 2.5em;
-      margin-bottom: 10px;
-    }
-    
-    .stat-label {
-      color: #a0a0c0;
-      margin-top: 10px;
-    }
-    
-    /* Footer */
-    .footer {
-      text-align: center;
-      padding: 40px 20px;
-      border-top: 2px solid rgba(102, 126, 234, 0.2);
-      margin-top: 80px;
-    }
-    
-    .footer p {
-      color: #a0a0c0;
-    }
-    
-    /* Animations */
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.5em;
-      }
-      .section h2 {
-        font-size: 1.8em;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kamal Adel | Business Intelligence & ERP Consultant</title>
+<meta name="description" content="Business Intelligence & ERP consultant — ERP implementation, data migration, financial dashboards and custom business systems.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0b1a;--card:rgba(255,255,255,.04);--line:rgba(102,126,234,.2);--p:#667eea;--s:#a855f7;--txt:#e4e4f0;--mute:#9a9ab8}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Inter,sans-serif;background:var(--bg);color:var(--txt);line-height:1.7;overflow-x:hidden}
+canvas#bg{position:fixed;inset:0;z-index:-1}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1150px;margin:auto;padding:0 20px}
+nav{position:fixed;top:0;width:100%;z-index:10;backdrop-filter:blur(12px);background:rgba(11,11,26,.7);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;height:64px}
+.logo{font-weight:800;font-size:1.3em;background:linear-gradient(90deg,var(--p),var(--s));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.links{display:flex;gap:26px}
+.links a{color:var(--mute);font-size:.95em;transition:.3s}
+.links a:hover,.links a.active{color:#fff}
+@media(max-width:800px){.links{display:none}}
+.hero{min-height:100vh;display:flex;align-items:center;padding-top:64px}
+.hero .wrap{display:grid;grid-template-columns:1.3fr 1fr;gap:50px;align-items:center}
+.hello{color:var(--p);font-weight:600;letter-spacing:2px;text-transform:uppercase;font-size:.9em}
+.hero h1{font-size:3.6em;font-weight:800;line-height:1.1;margin:10px 0}
+.hero h1 span{background:linear-gradient(90deg,var(--p),var(--s));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.typed{font-size:1.5em;color:var(--mute);min-height:1.6em}
+.typed b{color:#fff;border-right:3px solid var(--p);padding-right:4px;animation:blink .8s infinite}
+@keyframes blink{50%{border-color:transparent}}
+.hero p.lead{color:var(--mute);margin:20px 0 30px;max-width:540px}
+.btns{display:flex;gap:15px;flex-wrap:wrap}
+.btn{padding:13px 28px;border-radius:50px;font-weight:600;transition:.3s;border:2px solid var(--p)}
+.btn.main{background:linear-gradient(90deg,var(--p),var(--s));border:none}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(102,126,234,.4)}
+.photo{position:relative;justify-self:center}
+.photo img{width:330px;height:330px;object-fit:cover;border-radius:50%;border:4px solid transparent;background:linear-gradient(var(--bg),var(--bg)) padding-box,linear-gradient(135deg,var(--p),var(--s)) border-box;animation:float 5s ease-in-out infinite}
+.photo::before{content:'';position:absolute;inset:-25px;border-radius:50%;border:2px dashed var(--line);animation:spin 25s linear infinite}
+@keyframes float{50%{transform:translateY(-15px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:850px){.hero .wrap{grid-template-columns:1fr;text-align:center}.hero h1{font-size:2.5em}.btns{justify-content:center}.photo{order:-1}.photo img{width:220px;height:220px}.hero p.lead{margin:20px auto 30px}}
+section{padding:100px 0}
+.title{text-align:center;margin-bottom:60px}
+.title small{color:var(--p);letter-spacing:3px;text-transform:uppercase;font-weight:600}
+.title h2{font-size:2.5em;font-weight:800}
+.reveal{opacity:0;transform:translateY(40px);transition:1s}
+.reveal.show{opacity:1;transform:none}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px;transition:.4s}
+.card:hover{transform:translateY(-8px);border-color:var(--p);box-shadow:0 20px 50px rgba(102,126,234,.15)}
+.grid{display:grid;gap:25px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+.icon{font-size:2.2em;margin-bottom:12px}
+.card h3{margin-bottom:10px;font-size:1.2em}
+.card p{color:var(--mute);font-size:.95em}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:25px;margin-top:-40px}
+.stat{text-align:center}
+.stat .num{font-size:2.8em;font-weight:800;background:linear-gradient(90deg,var(--p),var(--s));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat .lbl{color:var(--mute)}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.about p{color:var(--mute);margin-bottom:15px}
+.about strong{color:#fff}
+@media(max-width:850px){.about{grid-template-columns:1fr}}
+.timeline{position:relative;max-width:800px;margin:auto}
+.timeline::before{content:'';position:absolute;left:20px;top:0;bottom:0;width:2px;background:linear-gradient(var(--p),var(--s))}
+.tl{position:relative;padding-left:60px;margin-bottom:40px}
+.tl::before{content:'';position:absolute;left:12px;top:8px;width:18px;height:18px;border-radius:50%;background:var(--bg);border:3px solid var(--p)}
+.tl h3{font-size:1.2em}
+.tl .role{color:var(--p);font-size:.9em;font-weight:600}
+.tl ul{color:var(--mute);margin-top:10px;padding-left:18px}
+.tabs{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:40px}
+.tab{padding:9px 22px;border-radius:50px;border:1px solid var(--line);background:none;color:var(--mute);cursor:pointer;font:inherit;transition:.3s}
+.tab.on,.tab:hover{background:linear-gradient(90deg,var(--p),var(--s));color:#fff;border-color:transparent}
+.work .card{display:none}
+.work .card.vis{display:block;animation:pop .5s}
+@keyframes pop{from{opacity:0;transform:scale(.95)}}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}
+.tags span{font-size:.78em;padding:4px 12px;border-radius:20px;background:rgba(102,126,234,.12);color:var(--p)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;counter-reset:s}
+.step{text-align:center;counter-increment:s}
+.step::before{content:counter(s,decimal-leading-zero);display:block;font-size:2.5em;font-weight:800;color:transparent;-webkit-text-stroke:1.5px var(--p);margin-bottom:5px}
+.skillgroup h3{margin-bottom:15px}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chips span{padding:8px 16px;border-radius:10px;border:1px solid var(--line);background:var(--card);font-size:.9em;transition:.3s}
+.chips span:hover{border-color:var(--p);color:#fff;transform:scale(1.07)}
+.contact{text-align:center}
+.contact p{color:var(--mute);max-width:600px;margin:0 auto 30px}
+footer{text-align:center;padding:30px;color:var(--mute);border-top:1px solid var(--line);font-size:.9em}
+#top{position:fixed;bottom:25px;right:25px;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--p),var(--s));display:grid;place-items:center;font-size:1.3em;opacity:0;transition:.3s;cursor:pointer;border:none;color:#fff}
+#top.show{opacity:1}
+</style>
 </head>
 <body>
-  <div class="container">
-    <!-- Hero Section -->
-    <div class="hero">
-      <h1>Kamal Adel</h1>
-      <p>Business Intelligence & Enterprise Systems Architect</p>
-      <p>Transforming Financial Complexity into Intelligent Solutions</p>
-      <div class="cta-buttons">
-        <a href="https://www.linkedin.com/in/YOUR-LINKEDIN" class="btn btn-primary">LinkedIn</a>
-        <a href="mailto:YOUR-EMAIL" class="btn btn-secondary">Contact Me</a>
-        <a href="https://www.facebook.com/YOUR-PAGE" class="btn btn-secondary">Mr. Excel</a>
-      </div>
-    </div>
+<canvas id="bg"></canvas>
 
-    <!-- About Section -->
-    <div class="section">
-      <h2>👨‍💼 About Me</h2>
-      <p style="font-size: 1.1em; color: #b0b0d0; margin-top: 20px; line-height: 1.9;">
-        I'm a <strong>Financial Systems Specialist</strong> with deep expertise in designing and implementing enterprise-grade solutions. 
-        With an accounting and tax background, I've evolved into a <strong>Business Intelligence strategist</strong> who bridges the gap between 
-        complex financial needs and intelligent system architecture.<br><br>
-        I specialize in <strong>multi-company ERP implementations</strong>, <strong>system migrations</strong>, and building 
-        <strong>advanced financial analytics platforms</strong> that drive strategic decision-making for organizations across Egypt and the Gulf region.
-      </p>
-    </div>
+<nav><div class="wrap">
+  <a href="#home" class="logo">Kamal Adel</a>
+  <div class="links">
+    <a href="#about">About</a><a href="#services">Services</a><a href="#experience">Experience</a>
+    <a href="#work">Work</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
+  </div>
+</div></nav>
 
-    <!-- Core Competencies -->
-    <div class="section">
-      <h2>🎯 Core Competencies</h2>
-      <div class="skills-grid">
-        <div class="skill-card">
-          <h3>🏗️ Enterprise System Architecture</h3>
-          <p>Designing scalable multi-company financial systems with ZATCA compliance, advanced automation, and real-time reporting capabilities.</p>
-        </div>
-        <div class="skill-card">
-          <h3>🔄 System Migration & Integration</h3>
-          <p>Leading end-to-end migrations between enterprise platforms while maintaining data integrity, business continuity, and audit compliance.</p>
-        </div>
-        <div class="skill-card">
-          <h3>📊 Financial Analytics & BI</h3>
-          <p>Building intelligent dashboards and reporting frameworks that transform raw financial data into actionable business intelligence.</p>
-        </div>
-        <div class="skill-card">
-          <h3>⚙️ Workflow Automation</h3>
-          <p>Architecting intelligent business process automations that eliminate manual work, reduce errors, and enforce business rules automatically.</p>
-        </div>
-        <div class="skill-card">
-          <h3>💼 Multi-Currency & Multi-Company</h3>
-          <p>Handling complex financial scenarios across multiple legal entities, currencies, and jurisdictions with unified control and reporting.</p>
-        </div>
-        <div class="skill-card">
-          <h3>👥 Custom Development</h3>
-          <p>Building specialized solutions tailored to unique business needs using modern frameworks and best practices in software engineering.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- What I Build -->
-    <div class="section">
-      <h2>🛠️ What I Build</h2>
-      <div class="projects-grid">
-        <div class="project-card">
-          <h3>Financial Control Systems</h3>
-          <p>Sophisticated accounting platforms with budget enforcement, policy-based validations, and real-time financial control across organizations.</p>
-          <div class="tech-tags">
-            <span class="tag">ERP Implementation</span>
-            <span class="tag">Financial Control</span>
-            <span class="tag">Automation</span>
-          </div>
-        </div>
-        <div class="project-card">
-          <h3>Advanced Reporting Engines</h3>
-          <p>High-performance reporting frameworks with intelligent filtering, visualization, and export capabilities for operational and executive use.</p>
-          <div class="tech-tags">
-            <span class="tag">Analytics</span>
-            <span class="tag">Data Visualization</span>
-            <span class="tag">Reporting</span>
-          </div>
-        </div>
-        <div class="project-card">
-          <h3>Workflow Intelligence</h3>
-          <p>Intelligent systems that track business processes with real-time visibility, automated escalations, and comprehensive audit trails.</p>
-          <div class="tech-tags">
-            <span class="tag">Workflow</span>
-            <span class="tag">Process Automation</span>
-            <span class="tag">Tracking</span>
-          </div>
-        </div>
-        <div class="project-card">
-          <h3>Data Integration Platforms</h3>
-          <p>Seamless data flows between systems with automated validation, transformation, and reconciliation for unified analytics.</p>
-          <div class="tech-tags">
-            <span class="tag">Data Integration</span>
-            <span class="tag">ETL</span>
-            <span class="tag">Consolidation</span>
-          </div>
-        </div>
-        <div class="project-card">
-          <h3>HR Management Solutions</h3>
-          <p>Comprehensive HR systems including organizational structure visualization, talent management, and analytics.</p>
-          <div class="tech-tags">
-            <span class="tag">HR Systems</span>
-            <span class="tag">Org Analytics</span>
-            <span class="tag">Talent Mgmt</span>
-          </div>
-        </div>
-        <div class="project-card">
-          <h3>Educational Content</h3>
-          <p>Creating comprehensive learning resources on accounting, financial analysis, business intelligence, and modern data systems.</p>
-          <div class="tech-tags">
-            <span class="tag">Education</span>
-            <span class="tag">Training</span>
-            <span class="tag">Content Creation</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Tech Stack -->
-    <div class="section">
-      <h2>⚡ Technology Stack</h2>
-      <div class="stats-container">
-        <div class="stat-box">
-          <div class="stat-emoji">🐍</div>
-          <div class="stat-label">Python & Backend</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-emoji">🌐</div>
-          <div class="stat-label">JavaScript & Frontend</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-emoji">🗄️</div>
-          <div class="stat-label">Database Design</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-emoji">📊</div>
-          <div class="stat-label">Business Intelligence</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-emoji">🔧</div>
-          <div class="stat-label">Enterprise Systems</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-emoji">☁️</div>
-          <div class="stat-label">Cloud Deployment</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Footer -->
-    <div class="footer">
-      <p>Let's build something amazing together</p>
-      <p style="margin-top: 20px; font-size: 0.9em; color: #764ba2;">💼 Open to exciting projects and collaborations</p>
+<section class="hero" id="home"><div class="wrap">
+  <div>
+    <div class="hello">Hello, I'm</div>
+    <h1><span>Kamal Adel</span></h1>
+    <div class="typed">I'm a <b id="typed"></b></div>
+    <p class="lead">I help businesses turn scattered financial data and manual processes into connected systems, automated workflows and dashboards that leaders actually use to make decisions.</p>
+    <div class="btns">
+      <a href="#contact" class="btn main">Let's Work Together</a>
+      <a href="#work" class="btn">See My Work</a>
     </div>
   </div>
+  <div class="photo"><img src="photo.jpg" onerror="this.onerror=null;this.src='https://github.com/KamalAdel91.png'" alt="Kamal Adel"></div>
+</div></section>
+
+<div class="wrap"><div class="stats reveal">
+  <div class="stat card"><div class="num" data-to="3">0</div><div class="lbl">ERP Platforms Mastered</div></div>
+  <div class="stat card"><div class="num" data-to="10" data-plus>0</div><div class="lbl">Custom Business Systems Built</div></div>
+  <div class="stat card"><div class="num" data-to="2">0</div><div class="lbl">Markets: Egypt & the Gulf</div></div>
+  <div class="stat card"><div class="num" data-to="100" data-pct>0</div><div class="lbl">Bilingual: Arabic & English</div></div>
+</div></div>
+
+<section id="about"><div class="wrap">
+  <div class="title reveal"><small>Who I Am</small><h2>About Me</h2></div>
+  <div class="about reveal">
+    <div>
+      <p>I started my career in <strong>accounting and tax</strong>. That background is my edge: I understand how money actually moves through a business, how auditors think, and why a report that doesn't reconcile is worse than no report at all.</p>
+      <p>Over time I moved into <strong>business intelligence, ERP and automation</strong>, building the systems I always wished finance teams had. Today I design and deliver complete solutions: from implementing the ERP, to migrating years of historical data, to building the dashboards that sit on top.</p>
+    </div>
+    <div>
+      <p>I work with <strong>multi-company groups</strong> in Egypt and Saudi Arabia, handling multiple entities, currencies and tax regimes, including <strong>ZATCA e-invoicing compliance</strong>.</p>
+      <p>Alongside client work, I build my own <strong>suite of business applications</strong> and teach accounting, Excel, Power BI, ERP and AI through free educational content.</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="services"><div class="wrap">
+  <div class="title reveal"><small>What I Offer</small><h2>Services</h2></div>
+  <div class="grid">
+    <div class="card reveal"><div class="icon">🏗️</div><h3>ERP Implementation</h3><p>End-to-end setup of ERP systems for single and multi-company groups: chart of accounts, inter-company flows, approval workflows, permissions and tax compliance.</p></div>
+    <div class="card reveal"><div class="icon">🔄</div><h3>Data Migration</h3><p>Moving businesses between platforms without losing history: customers, suppliers, items, opening balances and open transactions, fully validated and reconciled.</p></div>
+    <div class="card reveal"><div class="icon">📊</div><h3>BI & Financial Dashboards</h3><p>Consolidated dashboards across companies and currencies: P&L, cash flow, receivables, sales performance and KPIs, refreshed automatically.</p></div>
+    <div class="card reveal"><div class="icon">🧩</div><h3>Custom Business Apps</h3><p>When off-the-shelf doesn't fit, I build it: custom modules, screens, reports and integrations designed around how your team really works.</p></div>
+    <div class="card reveal"><div class="icon">⚙️</div><h3>Process Automation</h3><p>Removing repetitive manual work: automated approvals, email routing, notifications, document generation and system-to-system sync.</p></div>
+    <div class="card reveal"><div class="icon">🎓</div><h3>Training & Consulting</h3><p>Training finance and operations teams to own their systems, plus advisory on financial controls, reporting structure and digital transformation.</p></div>
+  </div>
+</div></section>
+
+<section id="experience"><div class="wrap">
+  <div class="title reveal"><small>My Journey</small><h2>Experience</h2></div>
+  <div class="timeline">
+    <div class="tl reveal"><h3>Freelance ERP & BI Consultant</h3><div class="role">Egypt & Saudi Arabia</div>
+      <ul>
+        <li>Implementing a multi-company ERP for a Saudi business group with three legal entities, including ZATCA compliance</li>
+        <li>Led a full migration journey across three platforms, moving the client's data with history intact</li>
+        <li>Delivered an ERP implementation and data migration for a medical devices distributor, including a sales-rep app</li>
+        <li>Built custom modules for budgeting, treasury, reporting and workflow tracking</li>
+      </ul></div>
+    <div class="tl reveal"><h3>Business Intelligence & Automation</h3><div class="role">Full-time · Healthcare research sector</div>
+      <ul>
+        <li>Built consolidated financial dashboards across a group of three companies</li>
+        <li>Automated data pipelines from accounting and analytics platforms into reporting</li>
+        <li>Designed deal-based contract control linking CRM and accounting</li>
+      </ul></div>
+    <div class="tl reveal"><h3>Accounting & Tax</h3><div class="role">The foundation</div>
+      <ul>
+        <li>Hands-on bookkeeping, tax and financial reporting</li>
+        <li>The business understanding behind every system I build today</li>
+      </ul></div>
+  </div>
+</div></section>
+
+<section id="work"><div class="wrap">
+  <div class="title reveal"><small>What I've Built</small><h2>Selected Work</h2></div>
+  <div class="tabs">
+    <button class="tab on" data-f="all">All</button>
+    <button class="tab" data-f="fin">Finance</button>
+    <button class="tab" data-f="ops">Operations</button>
+    <button class="tab" data-f="data">Data & BI</button>
+  </div>
+  <div class="grid work">
+    <div class="card vis" data-c="fin"><div class="icon">💰</div><h3>Budget Control Engine</h3><p>A system that enforces budgets in real time: it checks every purchase and expense against the approved budget and blocks or escalates anything that exceeds it.</p><div class="tags"><span>Budgeting</span><span>Controls</span><span>Dashboards</span></div></div>
+    <div class="card vis" data-c="fin"><div class="icon">🏦</div><h3>Treasury & Banking Suite</h3><p>Manages cash, bank transactions, cheques and reconciliation in one place, with a live cash-flow dashboard for finance managers.</p><div class="tags"><span>Treasury</span><span>Cash Flow</span><span>Reconciliation</span></div></div>
+    <div class="card vis" data-c="fin"><div class="icon">💱</div><h3>Multi-Currency Engine</h3><p>Lets a single account carry transactions in different currencies line by line, solving a real limitation for companies dealing across borders.</p><div class="tags"><span>Multi-Currency</span><span>Accounting</span></div></div>
+    <div class="card vis" data-c="ops"><div class="icon">🧭</div><h3>Workflow Tracker</h3><p>Tracks any document through its approval stages with timestamps and checklists, so managers instantly see where things are stuck and for how long.</p><div class="tags"><span>Workflow</span><span>Visibility</span></div></div>
+    <div class="card vis" data-c="ops"><div class="icon">📧</div><h3>Smart Email Routing</h3><p>A rule-based engine that sends the right email to the right person at the right moment, with templates built from live business data.</p><div class="tags"><span>Automation</span><span>Communication</span></div></div>
+    <div class="card vis" data-c="ops"><div class="icon">👥</div><h3>Interactive Org Chart</h3><p>A visual, navigable organization chart generated directly from HR data, always up to date.</p><div class="tags"><span>HR</span><span>Visualization</span></div></div>
+    <div class="card vis" data-c="ops"><div class="icon">📱</div><h3>Mobile ERP App</h3><p>A mobile-first, installable app experience for field teams and sales reps, with offline support and real-time sync.</p><div class="tags"><span>Mobile</span><span>Field Sales</span></div></div>
+    <div class="card vis" data-c="data"><div class="icon">📈</div><h3>Group Financial Dashboard</h3><p>Consolidated reporting for a three-company group: P&L, balance sheet and KPIs across entities and currencies, refreshed automatically.</p><div class="tags"><span>Power BI</span><span>Consolidation</span></div></div>
+    <div class="card vis" data-c="data"><div class="icon">📋</div><h3>Advanced Report Viewer</h3><p>An upgraded reporting experience with Excel-style filters, sticky headers, auto-fit columns and dark mode, making large reports pleasant to work with.</p><div class="tags"><span>Reporting</span><span>UX</span></div></div>
+    <div class="card vis" data-c="data"><div class="icon">🔀</div><h3>ERP-to-ERP Migration Toolkit</h3><p>A reusable framework to extract, map, validate and load data between ERP platforms, cutting migration time and errors.</p><div class="tags"><span>Migration</span><span>ETL</span></div></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="title reveal"><small>How I Work</small><h2>My Process</h2></div>
+  <div class="steps">
+    <div class="step card reveal"><h3>Discover</h3><p>Understand the business, pain points and goals</p></div>
+    <div class="step card reveal"><h3>Design</h3><p>Map processes, accounts, data and reports</p></div>
+    <div class="step card reveal"><h3>Build</h3><p>Configure, customize and automate</p></div>
+    <div class="step card reveal"><h3>Migrate</h3><p>Move and reconcile historical data</p></div>
+    <div class="step card reveal"><h3>Train & Support</h3><p>Hand over a system the team owns</p></div>
+  </div>
+</div></section>
+
+<section id="skills"><div class="wrap">
+  <div class="title reveal"><small>Toolbox</small><h2>Skills</h2></div>
+  <div class="grid">
+    <div class="card skillgroup reveal"><h3>💼 Business</h3><div class="chips"><span>Financial Accounting</span><span>Tax & VAT</span><span>ZATCA</span><span>Budgeting</span><span>Financial Controls</span><span>Consolidation</span></div></div>
+    <div class="card skillgroup reveal"><h3>🏗️ ERP & Platforms</h3><div class="chips"><span>ERPNext</span><span>Frappe</span><span>Zoho Books</span><span>Zoho CRM</span><span>Odoo</span><span>CRM Systems</span></div></div>
+    <div class="card skillgroup reveal"><h3>📊 Data & BI</h3><div class="chips"><span>Power BI</span><span>Zoho Analytics</span><span>Excel</span><span>SQL</span><span>Data Modeling</span><span>ETL</span></div></div>
+    <div class="card skillgroup reveal"><h3>💻 Development</h3><div class="chips"><span>Python</span><span>JavaScript</span><span>Vue.js</span><span>MariaDB</span><span>REST APIs</span><span>Linux</span><span>Git</span><span>AI Tools</span></div></div>
+  </div>
+</div></section>
+
+<section id="contact" class="contact"><div class="wrap reveal">
+  <div class="title"><small>Get In Touch</small><h2>Let's Build Something</h2></div>
+  <p>Planning an ERP rollout, a migration, or need dashboards your management will actually use? Let's talk about how I can help.</p>
+  <div class="btns" style="justify-content:center">
+    <a href="mailto:YOUR-EMAIL" class="btn main">✉️ Email Me</a>
+    <a href="https://www.linkedin.com/in/YOUR-LINKEDIN" target="_blank" class="btn">LinkedIn</a>
+    <a href="https://wa.me/YOUR-NUMBER" target="_blank" class="btn">WhatsApp</a>
+    <a href="https://github.com/KamalAdel91" target="_blank" class="btn">GitHub</a>
+  </div>
+</div></section>
+
+<footer>© <span id="yr"></span> Kamal Adel · Business Intelligence & ERP Consultant</footer>
+<button id="top" onclick="scrollTo(0,0)">↑</button>
+
+<script>
+const words=["Business Intelligence Consultant","ERP Implementation Specialist","Data Migration Expert","Automation Builder","Financial Systems Developer"];
+let w=0,c=0,del=false;const el=document.getElementById('typed');
+(function type(){const t=words[w];el.textContent=t.slice(0,c);
+ if(!del&&c<t.length)c++;else if(del&&c>0)c--;else{del=!del;if(!del)w=(w+1)%words.length}
+ setTimeout(type,del?40:(c===t.length?1800:80))})();
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('show');
+ e.target.querySelectorAll('[data-to]').forEach(n=>{const to=+n.dataset.to;let i=0;const st=setInterval(()=>{i+=Math.ceil(to/40);if(i>=to){i=to;clearInterval(st)}
+ n.textContent=i+(n.hasAttribute('data-plus')?'+':'')+(n.hasAttribute('data-pct')?'%':'')},30)});io.unobserve(e.target)}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(r=>io.observe(r));
+
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+ document.querySelectorAll('.work .card').forEach(card=>card.classList.toggle('vis',b.dataset.f==='all'||card.dataset.c===b.dataset.f))});
+
+addEventListener('scroll',()=>{document.getElementById('top').classList.toggle('show',scrollY>500);
+ document.querySelectorAll('section[id]').forEach(s=>{const a=document.querySelector('.links a[href="#'+s.id+'"]');
+ if(a)a.classList.toggle('active',scrollY>=s.offsetTop-120&&scrollY<s.offsetTop+s.offsetHeight-120)})});
+document.getElementById('yr').textContent=new Date().getFullYear();
+
+const cv=document.getElementById('bg'),x=cv.getContext('2d');let P=[];
+function size(){cv.width=innerWidth;cv.height=innerHeight;P=Array.from({length:Math.min(80,innerWidth/15)},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4}))}
+size();addEventListener('resize',size);
+(function draw(){x.clearRect(0,0,cv.width,cv.height);
+ P.forEach((p,i)=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>cv.width)p.vx*=-1;if(p.y<0||p.y>cv.height)p.vy*=-1;
+  x.fillStyle='rgba(102,126,234,.6)';x.beginPath();x.arc(p.x,p.y,1.8,0,7);x.fill();
+  for(let j=i+1;j<P.length;j++){const q=P[j],d=Math.hypot(p.x-q.x,p.y-q.y);
+   if(d<130){x.strokeStyle='rgba(102,126,234,'+(.15*(1-d/130))+')';x.beginPath();x.moveTo(p.x,p.y);x.lineTo(q.x,q.y);x.stroke()}}});
+ requestAnimationFrame(draw)})();
+</script>
 </body>
 </html>
