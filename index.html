@@ -4,23 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kamal Adel | Business Intelligence & ERP Consultant</title>
-<meta name="description" content="Business Intelligence & ERP consultant — ERP implementation, data migration, financial dashboards and custom business systems.">
+<meta name="description" content="Business Intelligence & ERP consultant — ERP implementation, integrations, automation and interactive financial dashboards.">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
-:root{--bg:#0b0b1a;--card:rgba(255,255,255,.04);--line:rgba(102,126,234,.2);--p:#667eea;--s:#a855f7;--txt:#e4e4f0;--mute:#9a9ab8}
+:root{--bg:#0b0b1a;--card:rgba(255,255,255,.04);--line:rgba(102,126,234,.2);--p:#667eea;--s:#a855f7;--c:#22d3ee;--g:#4ade80;--o:#f59e0b;--txt:#e4e4f0;--mute:#9a9ab8}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:Inter,sans-serif;background:var(--bg);color:var(--txt);line-height:1.7;overflow-x:hidden}
 canvas#bg{position:fixed;inset:0;z-index:-1}
 a{color:inherit;text-decoration:none}
-.wrap{max-width:1150px;margin:auto;padding:0 20px}
+.wrap{max-width:1180px;margin:auto;padding:0 20px}
+
 nav{position:fixed;top:0;width:100%;z-index:10;backdrop-filter:blur(12px);background:rgba(11,11,26,.7);border-bottom:1px solid var(--line)}
 nav .wrap{display:flex;justify-content:space-between;align-items:center;height:64px}
 .logo{font-weight:800;font-size:1.3em;background:linear-gradient(90deg,var(--p),var(--s));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.links{display:flex;gap:26px}
+.links{display:flex;gap:22px}
 .links a{color:var(--mute);font-size:.95em;transition:.3s}
 .links a:hover,.links a.active{color:#fff}
-@media(max-width:800px){.links{display:none}}
+@media(max-width:900px){.links{display:none}}
+
 .hero{min-height:100vh;display:flex;align-items:center;padding-top:64px}
 .hero .wrap{display:grid;grid-template-columns:1.3fr 1fr;gap:50px;align-items:center}
 .hello{color:var(--p);font-weight:600;letter-spacing:2px;text-transform:uppercase;font-size:.9em}
@@ -40,10 +43,12 @@ nav .wrap{display:flex;justify-content:space-between;align-items:center;height:6
 @keyframes float{50%{transform:translateY(-15px)}}
 @keyframes spin{to{transform:rotate(360deg)}}
 @media(max-width:850px){.hero .wrap{grid-template-columns:1fr;text-align:center}.hero h1{font-size:2.5em}.btns{justify-content:center}.photo{order:-1}.photo img{width:220px;height:220px}.hero p.lead{margin:20px auto 30px}}
+
 section{padding:100px 0}
-.title{text-align:center;margin-bottom:60px}
+.title{text-align:center;margin-bottom:50px}
 .title small{color:var(--p);letter-spacing:3px;text-transform:uppercase;font-weight:600}
 .title h2{font-size:2.5em;font-weight:800}
+.title p{color:var(--mute);max-width:640px;margin:10px auto 0}
 .reveal{opacity:0;transform:translateY(40px);transition:1s}
 .reveal.show{opacity:1;transform:none}
 .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px;transition:.4s}
@@ -60,6 +65,82 @@ section{padding:100px 0}
 .about p{color:var(--mute);margin-bottom:15px}
 .about strong{color:#fff}
 @media(max-width:850px){.about{grid-template-columns:1fr}}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}
+.tags span{font-size:.78em;padding:4px 12px;border-radius:20px;background:rgba(102,126,234,.12);color:var(--p)}
+@keyframes pop{from{opacity:0;transform:scale(.97)}}
+
+/* ===== Architecture diagram ===== */
+.arch{background:linear-gradient(180deg,rgba(102,126,234,.06),rgba(168,85,247,.04));border:1px solid var(--line);border-radius:24px;padding:20px;overflow-x:auto}
+.arch svg{display:block;width:100%;min-width:820px;height:auto}
+.node{cursor:pointer}
+.node rect,.node path.shape,.node ellipse{transition:stroke .3s,fill .3s}
+.node:hover rect.box,.node.on rect.box,.node.on path.shape,.node:hover path.shape{stroke:#a855f7;stroke-width:2}
+.node.on rect.box,.node.on path.shape{fill:rgba(168,85,247,.16)}
+.ntitle{fill:#fff;font-weight:700;font-size:15px}
+.nsub{fill:#9a9ab8;font-size:11.5px}
+.stagelbl{fill:#667eea;font-size:11px;font-weight:700;letter-spacing:2px}
+.wire{fill:none;stroke:rgba(102,126,234,.28);stroke-width:2}
+.wire.dash{stroke-dasharray:6 6;animation:dash 1s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-12}}
+.pdetail{margin-top:20px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px 30px;display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start}
+.pdetail .big{font-size:2.6em;width:74px;height:74px;display:grid;place-items:center;border-radius:18px;background:linear-gradient(135deg,rgba(102,126,234,.25),rgba(168,85,247,.25))}
+.pdetail h3{font-size:1.3em;margin-bottom:4px}
+.pdetail p{color:var(--mute)}
+.pdetail.swap{animation:pop .4s}
+@media(max-width:700px){.pdetail{grid-template-columns:1fr;text-align:center}.pdetail .big{margin:auto}.pdetail .tags{justify-content:center}}
+.hint{text-align:center;color:var(--mute);font-size:.85em;margin-top:10px}
+
+/* ===== Automation ===== */
+.auto{display:grid;grid-template-columns:1fr 40px 1fr 40px 1.4fr 40px 1fr;align-items:center}
+.anode{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;height:100%}
+.anode .lbl{font-size:.75em;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--p)}
+.anode h4{margin:6px 0 4px;font-size:1.05em}
+.anode p,.anode li{color:var(--mute);font-size:.88em}
+.anode ul{list-style:none;display:grid;gap:6px;margin-top:6px}
+.anode li{background:rgba(102,126,234,.08);border-radius:8px;padding:6px 10px;opacity:.35;transition:.4s}
+.anode li.fire{opacity:1;color:#fff;background:rgba(168,85,247,.25)}
+.anode.result{border-color:rgba(74,222,128,.4)}
+.anode.result .lbl{color:var(--g)}
+.arrow{text-align:center;color:var(--s);font-size:1.4em;animation:nudge 1.2s ease-in-out infinite}
+@keyframes nudge{50%{transform:translateX(5px)}}
+@media(max-width:900px){.auto{grid-template-columns:1fr}.arrow{transform:rotate(90deg);animation:none;padding:6px 0}}
+
+/* ===== Live dashboard ===== */
+.dash{background:#0f0f24;border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.dbar{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.dbrand{display:flex;align-items:center;gap:10px}
+.dbrand .dot{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--p),var(--s));display:grid;place-items:center;font-weight:800}
+.dbrand b{display:block;line-height:1.2}
+.dbrand small{color:var(--mute);font-size:.78em}
+.filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.seg{display:flex;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:10px;padding:3px}
+.seg button{font:inherit;font-size:.82em;font-weight:600;border:none;background:none;color:var(--mute);padding:6px 12px;border-radius:7px;cursor:pointer;transition:.2s}
+.seg button.on{background:linear-gradient(90deg,var(--p),var(--s));color:#fff}
+select.dd{font:inherit;font-size:.85em;background:rgba(255,255,255,.04);color:#fff;border:1px solid var(--line);border-radius:10px;padding:7px 10px;cursor:pointer}
+select.dd option{background:#0f0f24}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:14px}
+.kpi{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.kpi small{color:var(--mute);font-size:.78em;display:block}
+.kpi b{font-size:1.45em;font-variant-numeric:tabular-nums;letter-spacing:-.5px}
+.kpi .d{font-size:.75em;font-weight:600;margin-left:6px}
+.up{color:var(--g)}.down{color:#f87171}
+.panels{display:grid;grid-template-columns:2fr 1fr;gap:14px}
+.panels2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.panel{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:14px;padding:16px;min-width:0}
+.panel h4{font-size:.9em;margin-bottom:10px;display:flex;justify-content:space-between}
+.panel h4 span{color:var(--mute);font-weight:400;font-size:.9em}
+.chart{position:relative;height:250px}
+.chart.sm{height:220px}
+table.top{width:100%;border-collapse:collapse;font-size:.86em}
+table.top td{padding:8px 4px;border-bottom:1px solid rgba(102,126,234,.1)}
+table.top td:last-child{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.barcell{width:42%}
+.minibar{height:6px;border-radius:3px;background:linear-gradient(90deg,var(--p),var(--s));transition:width .6s}
+.demo{text-align:center;color:var(--mute);font-size:.82em;margin-top:14px}
+@media(max-width:1000px){.kpis{grid-template-columns:repeat(3,1fr)}.panels,.panels2{grid-template-columns:1fr}}
+@media(max-width:560px){.kpis{grid-template-columns:1fr 1fr}.dash{padding:14px}}
+
+/* rest */
 .timeline{position:relative;max-width:800px;margin:auto}
 .timeline::before{content:'';position:absolute;left:20px;top:0;bottom:0;width:2px;background:linear-gradient(var(--p),var(--s))}
 .tl{position:relative;padding-left:60px;margin-bottom:40px}
@@ -72,9 +153,6 @@ section{padding:100px 0}
 .tab.on,.tab:hover{background:linear-gradient(90deg,var(--p),var(--s));color:#fff;border-color:transparent}
 .work .card{display:none}
 .work .card.vis{display:block;animation:pop .5s}
-@keyframes pop{from{opacity:0;transform:scale(.95)}}
-.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}
-.tags span{font-size:.78em;padding:4px 12px;border-radius:20px;background:rgba(102,126,234,.12);color:var(--p)}
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;counter-reset:s}
 .step{text-align:center;counter-increment:s}
 .step::before{content:counter(s,decimal-leading-zero);display:block;font-size:2.5em;font-weight:800;color:transparent;-webkit-text-stroke:1.5px var(--p);margin-bottom:5px}
@@ -87,6 +165,7 @@ section{padding:100px 0}
 footer{text-align:center;padding:30px;color:var(--mute);border-top:1px solid var(--line);font-size:.9em}
 #top{position:fixed;bottom:25px;right:25px;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--p),var(--s));display:grid;place-items:center;font-size:1.3em;opacity:0;transition:.3s;cursor:pointer;border:none;color:#fff}
 #top.show{opacity:1}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
@@ -95,11 +174,12 @@ footer{text-align:center;padding:30px;color:var(--mute);border-top:1px solid var
 <nav><div class="wrap">
   <a href="#home" class="logo">Kamal Adel</a>
   <div class="links">
-    <a href="#about">About</a><a href="#services">Services</a><a href="#experience">Experience</a>
-    <a href="#work">Work</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
+    <a href="#about">About</a><a href="#services">Services</a><a href="#journey">Data Journey</a><a href="#dashboard">Live Dashboard</a>
+    <a href="#work">Work</a><a href="#experience">Experience</a><a href="#contact">Contact</a>
   </div>
 </div></nav>
 
+<!-- HERO -->
 <section class="hero" id="home"><div class="wrap">
   <div>
     <div class="hello">Hello, I'm</div>
@@ -107,8 +187,8 @@ footer{text-align:center;padding:30px;color:var(--mute);border-top:1px solid var
     <div class="typed">I'm a <b id="typed"></b></div>
     <p class="lead">I help businesses turn scattered financial data and manual processes into connected systems, automated workflows and dashboards that leaders actually use to make decisions.</p>
     <div class="btns">
-      <a href="#contact" class="btn main">Let's Work Together</a>
-      <a href="#work" class="btn">See My Work</a>
+      <a href="#dashboard" class="btn main">Try a Live Dashboard</a>
+      <a href="#contact" class="btn">Let's Work Together</a>
     </div>
   </div>
   <div class="photo"><img src="photo.jpg" onerror="this.onerror=null;this.src='https://github.com/KamalAdel91.png'" alt="Kamal Adel"></div>
@@ -121,6 +201,7 @@ footer{text-align:center;padding:30px;color:var(--mute);border-top:1px solid var
   <div class="stat card"><div class="num" data-to="100" data-pct>0</div><div class="lbl">Bilingual: Arabic & English</div></div>
 </div></div>
 
+<!-- ABOUT -->
 <section id="about"><div class="wrap">
   <div class="title reveal"><small>Who I Am</small><h2>About Me</h2></div>
   <div class="about reveal">
@@ -135,49 +216,196 @@ footer{text-align:center;padding:30px;color:var(--mute);border-top:1px solid var
   </div>
 </div></section>
 
+<!-- SERVICES -->
 <section id="services"><div class="wrap">
   <div class="title reveal"><small>What I Offer</small><h2>Services</h2></div>
   <div class="grid">
     <div class="card reveal"><div class="icon">🏗️</div><h3>ERP Implementation</h3><p>End-to-end setup of ERP systems for single and multi-company groups: chart of accounts, inter-company flows, approval workflows, permissions and tax compliance.</p></div>
     <div class="card reveal"><div class="icon">🔄</div><h3>Data Migration</h3><p>Moving businesses between platforms without losing history: customers, suppliers, items, opening balances and open transactions, fully validated and reconciled.</p></div>
+    <div class="card reveal"><div class="icon">🔗</div><h3>Systems Integration</h3><p>Connecting your ERP, CRM, accounting, banks and spreadsheets through APIs and scheduled syncs, so data flows on its own instead of being re-typed.</p></div>
     <div class="card reveal"><div class="icon">📊</div><h3>BI & Financial Dashboards</h3><p>Consolidated dashboards across companies and currencies: P&L, cash flow, receivables, sales performance and KPIs, refreshed automatically.</p></div>
-    <div class="card reveal"><div class="icon">🧩</div><h3>Custom Business Apps</h3><p>When off-the-shelf doesn't fit, I build it: custom modules, screens, reports and integrations designed around how your team really works.</p></div>
     <div class="card reveal"><div class="icon">⚙️</div><h3>Process Automation</h3><p>Removing repetitive manual work: automated approvals, email routing, notifications, document generation and system-to-system sync.</p></div>
-    <div class="card reveal"><div class="icon">🎓</div><h3>Training & Consulting</h3><p>Training finance and operations teams to own their systems, plus advisory on financial controls, reporting structure and digital transformation.</p></div>
+    <div class="card reveal"><div class="icon">🧩</div><h3>Custom Business Apps</h3><p>When off-the-shelf doesn't fit, I build it: custom modules, screens, reports and integrations designed around how your team really works.</p></div>
   </div>
 </div></section>
 
-<section id="experience"><div class="wrap">
-  <div class="title reveal"><small>My Journey</small><h2>Experience</h2></div>
-  <div class="timeline">
-    <div class="tl reveal"><h3>Freelance ERP & BI Consultant</h3><div class="role">Egypt & Saudi Arabia</div>
-      <ul>
-        <li>Implementing a multi-company ERP for a Saudi business group with three legal entities, including ZATCA compliance</li>
-        <li>Led a full migration journey across three platforms, moving the client's data with history intact</li>
-        <li>Delivered an ERP implementation and data migration for a medical devices distributor, including a sales-rep app</li>
-        <li>Built custom modules for budgeting, treasury, reporting and workflow tracking</li>
-      </ul></div>
-    <div class="tl reveal"><h3>Business Intelligence & Automation</h3><div class="role">Full-time · Healthcare research sector</div>
-      <ul>
-        <li>Built consolidated financial dashboards across a group of three companies</li>
-        <li>Automated data pipelines from accounting and analytics platforms into reporting</li>
-        <li>Designed deal-based contract control linking CRM and accounting</li>
-      </ul></div>
-    <div class="tl reveal"><h3>Accounting & Tax</h3><div class="role">The foundation</div>
-      <ul>
-        <li>Hands-on bookkeeping, tax and financial reporting</li>
-        <li>The business understanding behind every system I build today</li>
-      </ul></div>
+<!-- DATA JOURNEY -->
+<section id="journey"><div class="wrap">
+  <div class="title reveal"><small>From Raw Data to Decisions</small><h2>The Data Journey</h2>
+    <p>How data travels from the systems a business already uses, through integration and cleaning, into one model and finally a dashboard. Click any part of the diagram.</p></div>
+
+  <div class="arch reveal">
+  <svg viewBox="0 0 1120 470" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Data architecture diagram">
+    <defs>
+      <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      <linearGradient id="gH" x1="0" x2="1"><stop offset="0" stop-color="#667eea" stop-opacity=".35"/><stop offset="1" stop-color="#a855f7" stop-opacity=".35"/></linearGradient>
+      <linearGradient id="gBar" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#667eea"/><stop offset="1" stop-color="#a855f7"/></linearGradient>
+      <path id="w1" d="M200,68 C275,68 275,235 350,235"/>
+      <path id="w2" d="M200,153 C275,153 275,235 350,235"/>
+      <path id="w3" d="M200,238 C275,238 275,235 350,235"/>
+      <path id="w4" d="M200,323 C275,323 275,235 350,235"/>
+      <path id="w5" d="M200,408 C275,408 275,235 350,235"/>
+      <path id="wm" d="M520,235 L940,235"/>
+    </defs>
+
+    <!-- stage labels -->
+    <text class="stagelbl" x="20" y="22">1 · SOURCES</text>
+    <text class="stagelbl" x="350" y="22">2 · INTEGRATE</text>
+    <text class="stagelbl" x="575" y="22">3 · CLEAN</text>
+    <text class="stagelbl" x="768" y="22">4 · MODEL</text>
+    <text class="stagelbl" x="955" y="22">5 · DASHBOARD</text>
+
+    <!-- wires -->
+    <use href="#w1" class="wire"/><use href="#w2" class="wire"/><use href="#w3" class="wire"/><use href="#w4" class="wire"/><use href="#w5" class="wire"/>
+    <path d="M520,235 L575,235" class="wire dash"/><path d="M715,235 L770,235" class="wire dash"/><path d="M900,235 L955,235" class="wire dash"/>
+
+    <!-- packets -->
+    <g filter="url(#glow)">
+      <circle r="5" fill="#22d3ee"><animateMotion dur="2.6s" repeatCount="indefinite"><mpath href="#w1"/></animateMotion></circle>
+      <circle r="5" fill="#a855f7"><animateMotion dur="2.2s" begin=".5s" repeatCount="indefinite"><mpath href="#w2"/></animateMotion></circle>
+      <circle r="5" fill="#4ade80"><animateMotion dur="2s" begin=".2s" repeatCount="indefinite"><mpath href="#w3"/></animateMotion></circle>
+      <circle r="5" fill="#f59e0b"><animateMotion dur="2.4s" begin=".9s" repeatCount="indefinite"><mpath href="#w4"/></animateMotion></circle>
+      <circle r="5" fill="#667eea"><animateMotion dur="2.8s" begin=".3s" repeatCount="indefinite"><mpath href="#w5"/></animateMotion></circle>
+      <circle r="5.5" fill="#fff"><animateMotion dur="2.2s" repeatCount="indefinite"><mpath href="#wm"/></animateMotion></circle>
+      <circle r="5.5" fill="#a855f7"><animateMotion dur="2.2s" begin=".75s" repeatCount="indefinite"><mpath href="#wm"/></animateMotion></circle>
+      <circle r="5.5" fill="#22d3ee"><animateMotion dur="2.2s" begin="1.5s" repeatCount="indefinite"><mpath href="#wm"/></animateMotion></circle>
+    </g>
+
+    <!-- sources -->
+    <g class="node" data-i="0">
+      <rect class="box" x="20" y="40" width="180" height="56" rx="14" fill="rgba(255,255,255,.04)" stroke="rgba(102,126,234,.35)"/>
+      <text x="42" y="74" font-size="20">🏢</text><text class="ntitle" x="74" y="66">ERP</text><text class="nsub" x="74" y="83">Sales, stock, purchasing</text>
+    </g>
+    <g class="node" data-i="0">
+      <rect class="box" x="20" y="125" width="180" height="56" rx="14" fill="rgba(255,255,255,.04)" stroke="rgba(102,126,234,.35)"/>
+      <text x="42" y="159" font-size="20">📒</text><text class="ntitle" x="74" y="151">Accounting</text><text class="nsub" x="74" y="168">Ledgers, invoices, VAT</text>
+    </g>
+    <g class="node" data-i="0">
+      <rect class="box" x="20" y="210" width="180" height="56" rx="14" fill="rgba(255,255,255,.04)" stroke="rgba(102,126,234,.35)"/>
+      <text x="42" y="244" font-size="20">🤝</text><text class="ntitle" x="74" y="236">CRM</text><text class="nsub" x="74" y="253">Leads, deals, contracts</text>
+    </g>
+    <g class="node" data-i="0">
+      <rect class="box" x="20" y="295" width="180" height="56" rx="14" fill="rgba(255,255,255,.04)" stroke="rgba(102,126,234,.35)"/>
+      <text x="42" y="329" font-size="20">🏦</text><text class="ntitle" x="74" y="321">Banks</text><text class="nsub" x="74" y="338">Statements, payments</text>
+    </g>
+    <g class="node" data-i="0">
+      <rect class="box" x="20" y="380" width="180" height="56" rx="14" fill="rgba(255,255,255,.04)" stroke="rgba(102,126,234,.35)"/>
+      <text x="42" y="414" font-size="20">📄</text><text class="ntitle" x="74" y="406">Excel & CSV</text><text class="nsub" x="74" y="423">Budgets, manual files</text>
+    </g>
+
+    <!-- integration hub -->
+    <g class="node" data-i="1">
+      <rect class="box" x="350" y="160" width="170" height="150" rx="20" fill="url(#gH)" stroke="rgba(168,85,247,.6)"/>
+      <circle cx="435" cy="205" r="22" fill="none" stroke="#a855f7" stroke-width="2" stroke-dasharray="4 5"><animateTransform attributeName="transform" type="rotate" from="0 435 205" to="360 435 205" dur="8s" repeatCount="indefinite"/></circle>
+      <text x="423" y="212" font-size="20">🔗</text>
+      <text class="ntitle" x="435" y="252" text-anchor="middle">Integration</text>
+      <text class="nsub" x="435" y="271" text-anchor="middle">APIs · Webhooks</text>
+      <text class="nsub" x="435" y="287" text-anchor="middle">Scheduled sync</text>
+    </g>
+
+    <!-- clean -->
+    <g class="node" data-i="2">
+      <rect class="box" x="575" y="180" width="140" height="110" rx="18" fill="rgba(255,255,255,.04)" stroke="rgba(102,126,234,.45)"/>
+      <text x="632" y="222" font-size="22">🧹</text>
+      <text class="ntitle" x="645" y="252" text-anchor="middle">Clean</text>
+      <text class="nsub" x="645" y="270" text-anchor="middle">Validate · Map</text>
+      <text class="nsub" x="645" y="285" text-anchor="middle">Convert</text>
+    </g>
+
+    <!-- model (cylinder) -->
+    <g class="node" data-i="3">
+      <path class="shape" d="M770,182 a65,16 0 0,0 130,0 v100 a65,16 0 0,1 -130,0 z" fill="rgba(255,255,255,.04)" stroke="rgba(102,126,234,.45)"/>
+      <ellipse cx="835" cy="182" rx="65" ry="16" fill="rgba(102,126,234,.18)" stroke="rgba(102,126,234,.45)"/>
+      <text class="ntitle" x="835" y="240" text-anchor="middle">Data Model</text>
+      <text class="nsub" x="835" y="258" text-anchor="middle">Consolidated</text>
+      <text class="nsub" x="835" y="273" text-anchor="middle">One truth</text>
+    </g>
+
+    <!-- dashboard -->
+    <g class="node" data-i="4">
+      <rect class="box" x="955" y="140" width="150" height="190" rx="18" fill="rgba(255,255,255,.04)" stroke="rgba(102,126,234,.45)"/>
+      <rect x="970" y="156" width="56" height="26" rx="6" fill="rgba(74,222,128,.15)"/><text x="976" y="174" font-size="11" fill="#4ade80" font-weight="700">▲ 12%</text>
+      <rect x="1034" y="156" width="56" height="26" rx="6" fill="rgba(102,126,234,.15)"/><text x="1041" y="174" font-size="11" fill="#a5b4fc" font-weight="700">2.4M</text>
+      <g fill="url(#gBar)">
+        <rect x="975" width="14" rx="3" y="236" height="34"><animate attributeName="height" values="34;54;34" dur="3s" repeatCount="indefinite"/><animate attributeName="y" values="236;216;236" dur="3s" repeatCount="indefinite"/></rect>
+        <rect x="995" width="14" rx="3" y="216" height="54"><animate attributeName="height" values="54;30;54" dur="3.4s" repeatCount="indefinite"/><animate attributeName="y" values="216;240;216" dur="3.4s" repeatCount="indefinite"/></rect>
+        <rect x="1015" width="14" rx="3" y="226" height="44"><animate attributeName="height" values="44;62;44" dur="2.8s" repeatCount="indefinite"/><animate attributeName="y" values="226;208;226" dur="2.8s" repeatCount="indefinite"/></rect>
+        <rect x="1035" width="14" rx="3" y="200" height="70"><animate attributeName="height" values="70;46;70" dur="3.2s" repeatCount="indefinite"/><animate attributeName="y" values="200;224;200" dur="3.2s" repeatCount="indefinite"/></rect>
+        <rect x="1055" width="14" rx="3" y="210" height="60"><animate attributeName="height" values="60;76;60" dur="3s" repeatCount="indefinite"/><animate attributeName="y" values="210;194;210" dur="3s" repeatCount="indefinite"/></rect>
+        <rect x="1075" width="14" rx="3" y="194" height="76"><animate attributeName="height" values="76;58;76" dur="2.6s" repeatCount="indefinite"/><animate attributeName="y" values="194;212;194" dur="2.6s" repeatCount="indefinite"/></rect>
+      </g>
+      <text class="ntitle" x="1030" y="300" text-anchor="middle">Dashboard</text>
+      <text class="nsub" x="1030" y="317" text-anchor="middle">KPIs · Drill-down</text>
+    </g>
+
+    <!-- footer captions -->
+    <text class="nsub" x="435" y="345" text-anchor="middle">Data moves on its own,</text>
+    <text class="nsub" x="435" y="361" text-anchor="middle">no exports or re-typing</text>
+    <text class="nsub" x="835" y="335" text-anchor="middle">Every figure reconciled</text>
+    <text class="nsub" x="835" y="351" text-anchor="middle">back to the source</text>
+  </svg>
+  </div>
+  <div class="pdetail" id="pdetail">
+    <div class="big" id="pd-ico"></div>
+    <div><h3 id="pd-t"></h3><p id="pd-p"></p><div class="tags" id="pd-tags"></div></div>
+  </div>
+
+  <div class="title reveal" style="margin:90px 0 40px"><small>Automation in Action</small><h2>One Event, Zero Manual Steps</h2>
+    <p>A single approval triggers everything that used to be done by hand.</p></div>
+  <div class="auto reveal">
+    <div class="anode"><div class="lbl">Trigger</div><h4>⚡ Invoice approved</h4><p>A manager approves a sales invoice in the ERP</p></div>
+    <div class="arrow">➜</div>
+    <div class="anode"><div class="lbl">Rules</div><h4>🧠 Check conditions</h4><p>Which company, customer, amount and currency?</p></div>
+    <div class="arrow">➜</div>
+    <div class="anode"><div class="lbl">Actions</div><h4>🔀 Run automatically</h4>
+      <ul id="acts"><li>📄 Generate e-invoice with QR code</li><li>📧 Email PDF to the customer</li><li>🤝 Update the deal in the CRM</li><li>💬 Notify the finance team</li><li>📊 Push figures to the dashboard</li></ul></div>
+    <div class="arrow">➜</div>
+    <div class="anode result"><div class="lbl">Result</div><h4>✅ Done in seconds</h4><p>No copy-paste, no forgotten follow-ups, numbers updated everywhere</p></div>
   </div>
 </div></section>
 
+<!-- LIVE DASHBOARD -->
+<section id="dashboard"><div class="wrap">
+  <div class="title reveal"><small>Try It Yourself</small><h2>Live Financial Dashboard</h2>
+    <p>This is the kind of dashboard sitting at the end of the journey. Change the company, year or currency and watch everything update.</p></div>
+
+  <div class="dash reveal">
+    <div class="dbar">
+      <div class="dbrand"><div class="dot">M</div><div><b>Mr. Insight Group</b><small>Consolidated financial overview</small></div></div>
+      <div class="filters">
+        <select class="dd" id="fCo" aria-label="Company">
+          <option value="all">All companies</option><option value="ksa">Mr. Insight KSA</option><option value="uae">Mr. Insight UAE</option><option value="egy">Mr. Insight Egypt</option>
+        </select>
+        <div class="seg" id="fYr"><button data-v="2025">2025</button><button class="on" data-v="2026">2026</button></div>
+        <div class="seg" id="fCur"><button class="on" data-v="SAR">SAR</button><button data-v="USD">USD</button></div>
+      </div>
+    </div>
+
+    <div class="kpis">
+      <div class="kpi"><small>Revenue</small><b id="kRev">0</b><span class="d" id="dRev"></span></div>
+      <div class="kpi"><small>Gross profit</small><b id="kGp">0</b><span class="d" id="dGp"></span></div>
+      <div class="kpi"><small>Net margin</small><b id="kNm">0</b></div>
+      <div class="kpi"><small>Receivables</small><b id="kAr">0</b></div>
+      <div class="kpi"><small>Cash balance</small><b id="kCash">0</b></div>
+    </div>
+
+    <div class="panels">
+      <div class="panel"><h4>Revenue vs target <span>Monthly</span></h4><div class="chart"><canvas id="cRev"></canvas></div></div>
+      <div class="panel"><h4>Revenue by category <span>Click to hide</span></h4><div class="chart"><canvas id="cCat"></canvas></div></div>
+    </div>
+    <div class="panels2">
+      <div class="panel"><h4>Receivables aging <span>Days overdue</span></h4><div class="chart sm"><canvas id="cAge"></canvas></div></div>
+      <div class="panel"><h4>Top customers <span>By revenue</span></h4><table class="top" id="tTop"></table></div>
+    </div>
+    <p class="demo">Demo data for a fictional company. Real dashboards connect to your live systems.</p>
+  </div>
+</div></section>
+
+<!-- WORK -->
 <section id="work"><div class="wrap">
   <div class="title reveal"><small>What I've Built</small><h2>Selected Work</h2></div>
   <div class="tabs">
-    <button class="tab on" data-f="all">All</button>
-    <button class="tab" data-f="fin">Finance</button>
-    <button class="tab" data-f="ops">Operations</button>
-    <button class="tab" data-f="data">Data & BI</button>
+    <button class="tab on" data-f="all">All</button><button class="tab" data-f="fin">Finance</button><button class="tab" data-f="ops">Operations</button><button class="tab" data-f="data">Data & BI</button>
   </div>
   <div class="grid work">
     <div class="card vis" data-c="fin"><div class="icon">💰</div><h3>Budget Control Engine</h3><p>A system that enforces budgets in real time: it checks every purchase and expense against the approved budget and blocks or escalates anything that exceeds it.</p><div class="tags"><span>Budgeting</span><span>Controls</span><span>Dashboards</span></div></div>
@@ -193,6 +421,20 @@ footer{text-align:center;padding:30px;color:var(--mute);border-top:1px solid var
   </div>
 </div></section>
 
+<!-- EXPERIENCE -->
+<section id="experience"><div class="wrap">
+  <div class="title reveal"><small>My Journey</small><h2>Experience</h2></div>
+  <div class="timeline">
+    <div class="tl reveal"><h3>Freelance ERP & BI Consultant</h3><div class="role">Egypt & Saudi Arabia</div>
+      <ul><li>Implementing a multi-company ERP for a Saudi business group with three legal entities, including ZATCA compliance</li><li>Led a full migration journey across three platforms, moving the client's data with history intact</li><li>Delivered an ERP implementation and data migration for a medical devices distributor, including a sales-rep app</li><li>Built custom modules for budgeting, treasury, reporting and workflow tracking</li></ul></div>
+    <div class="tl reveal"><h3>Business Intelligence & Automation</h3><div class="role">Full-time · Healthcare research sector</div>
+      <ul><li>Built consolidated financial dashboards across a group of three companies</li><li>Automated data pipelines from accounting and analytics platforms into reporting</li><li>Designed deal-based contract control linking CRM and accounting</li></ul></div>
+    <div class="tl reveal"><h3>Accounting & Tax</h3><div class="role">The foundation</div>
+      <ul><li>Hands-on bookkeeping, tax and financial reporting</li><li>The business understanding behind every system I build today</li></ul></div>
+  </div>
+</div></section>
+
+<!-- PROCESS -->
 <section><div class="wrap">
   <div class="title reveal"><small>How I Work</small><h2>My Process</h2></div>
   <div class="steps">
@@ -204,16 +446,18 @@ footer{text-align:center;padding:30px;color:var(--mute);border-top:1px solid var
   </div>
 </div></section>
 
+<!-- SKILLS -->
 <section id="skills"><div class="wrap">
   <div class="title reveal"><small>Toolbox</small><h2>Skills</h2></div>
   <div class="grid">
     <div class="card skillgroup reveal"><h3>💼 Business</h3><div class="chips"><span>Financial Accounting</span><span>Tax & VAT</span><span>ZATCA</span><span>Budgeting</span><span>Financial Controls</span><span>Consolidation</span></div></div>
     <div class="card skillgroup reveal"><h3>🏗️ ERP & Platforms</h3><div class="chips"><span>ERPNext</span><span>Frappe</span><span>Zoho Books</span><span>Zoho CRM</span><span>Odoo</span><span>CRM Systems</span></div></div>
     <div class="card skillgroup reveal"><h3>📊 Data & BI</h3><div class="chips"><span>Power BI</span><span>Zoho Analytics</span><span>Excel</span><span>SQL</span><span>Data Modeling</span><span>ETL</span></div></div>
-    <div class="card skillgroup reveal"><h3>💻 Development</h3><div class="chips"><span>Python</span><span>JavaScript</span><span>Vue.js</span><span>MariaDB</span><span>REST APIs</span><span>Linux</span><span>Git</span><span>AI Tools</span></div></div>
+    <div class="card skillgroup reveal"><h3>💻 Development</h3><div class="chips"><span>Python</span><span>JavaScript</span><span>Vue.js</span><span>MariaDB</span><span>REST APIs</span><span>Webhooks</span><span>Linux</span><span>Git</span><span>AI Tools</span></div></div>
   </div>
 </div></section>
 
+<!-- CONTACT -->
 <section id="contact" class="contact"><div class="wrap reveal">
   <div class="title"><small>Get In Touch</small><h2>Let's Build Something</h2></div>
   <p>Planning an ERP rollout, a migration, or need dashboards your management will actually use? Let's talk about how I can help.</p>
@@ -226,28 +470,115 @@ footer{text-align:center;padding:30px;color:var(--mute);border-top:1px solid var
 </div></section>
 
 <footer>© <span id="yr"></span> Kamal Adel · Business Intelligence & ERP Consultant</footer>
-<button id="top" onclick="scrollTo(0,0)">↑</button>
+<button id="top" onclick="scrollTo(0,0)" aria-label="Back to top">↑</button>
 
 <script>
-const words=["Business Intelligence Consultant","ERP Implementation Specialist","Data Migration Expert","Automation Builder","Financial Systems Developer"];
+// ---------- Typing ----------
+const words=["Business Intelligence Consultant","ERP Implementation Specialist","Integration & Automation Builder","Data Migration Expert","Financial Systems Developer"];
 let w=0,c=0,del=false;const el=document.getElementById('typed');
 (function type(){const t=words[w];el.textContent=t.slice(0,c);
  if(!del&&c<t.length)c++;else if(del&&c>0)c--;else{del=!del;if(!del)w=(w+1)%words.length}
  setTimeout(type,del?40:(c===t.length?1800:80))})();
 
+// ---------- Reveal + counters ----------
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('show');
  e.target.querySelectorAll('[data-to]').forEach(n=>{const to=+n.dataset.to;let i=0;const st=setInterval(()=>{i+=Math.ceil(to/40);if(i>=to){i=to;clearInterval(st)}
- n.textContent=i+(n.hasAttribute('data-plus')?'+':'')+(n.hasAttribute('data-pct')?'%':'')},30)});io.unobserve(e.target)}),{threshold:.15});
+ n.textContent=i+(n.hasAttribute('data-plus')?'+':'')+(n.hasAttribute('data-pct')?'%':'')},30)});io.unobserve(e.target)}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(r=>io.observe(r));
 
+// ---------- Architecture diagram ----------
+const stages=[
+ {i:"🗂️",t:"Sources: where the data lives today",p:"Most companies have their numbers spread across an ERP, an accounting system, a CRM, bank statements and dozens of Excel files, often for several companies at once. I start by mapping every source, who owns it and how often it changes.",g:["ERP","Accounting","CRM","Bank statements","Excel & CSV","Multiple companies"]},
+ {i:"🔗",t:"Integrate: connect the systems",p:"I connect the systems through their APIs, webhooks and scheduled syncs, so data moves automatically between them. No more exporting, re-typing or emailing files around.",g:["REST APIs","Webhooks","Scheduled sync","Python","Two-way sync"]},
+ {i:"🧹",t:"Clean & transform: make it trustworthy",p:"Raw data is messy. I remove duplicates, map accounts and customers between systems, convert currencies, standardize names and dates, and validate totals against the source so every figure can be trusted.",g:["Validation","Account mapping","Currency conversion","De-duplication","Reconciliation"]},
+ {i:"🧮",t:"Model: one version of the truth",p:"Clean data is organized into a single model: consolidated across companies, with inter-company eliminations, a shared calendar and clear measures, so everyone in the business reports the same numbers.",g:["Data modeling","Consolidation","Inter-company","KPIs","SQL"]},
+ {i:"📊",t:"Dashboard: decisions, not just reports",p:"What management sees: interactive dashboards with KPIs, drill-down from group to company to transaction, automatic refresh and alerts when something needs attention. Try the live one below.",g:["Power BI","Zoho Analytics","Drill-down","Auto refresh","Alerts"]}
+];
+const nodes=[...document.querySelectorAll('.node')],pd=document.getElementById('pdetail');let cur=0,autoplay=true;
+function show(n){cur=n;nodes.forEach(g=>g.classList.toggle('on',+g.dataset.i===n));const s=stages[n];
+ document.getElementById('pd-ico').textContent=s.i;document.getElementById('pd-t').textContent=s.t;document.getElementById('pd-p').textContent=s.p;
+ document.getElementById('pd-tags').innerHTML=s.g.map(x=>'<span>'+x+'</span>').join('');pd.classList.remove('swap');void pd.offsetWidth;pd.classList.add('swap')}
+nodes.forEach(g=>g.addEventListener('click',()=>{autoplay=false;show(+g.dataset.i)}));
+show(0);setInterval(()=>{if(autoplay)show((cur+1)%stages.length)},4500);
+
+// ---------- Automation ----------
+const acts=[...document.querySelectorAll('#acts li')];let a=0;
+setInterval(()=>{acts.forEach((li,j)=>li.classList.toggle('fire',j<=a));a=(a+1)%(acts.length+2)},700);
+
+// ---------- Live dashboard ----------
+Chart.defaults.color='#9a9ab8';Chart.defaults.font.family='Inter';Chart.defaults.borderColor='rgba(102,126,234,.1)';
+const M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const season=[.82,.86,1.02,.95,.98,1.04,.9,.88,1.05,1.1,1.14,1.26];
+const CO={ksa:{base:1250000,name:'KSA'},uae:{base:820000,name:'UAE'},egy:{base:540000,name:'Egypt'}};
+const CATS=['Medical devices','Consumables','Services','Software'];
+const MIX={ksa:[.46,.28,.16,.10],uae:[.38,.30,.20,.12],egy:[.30,.40,.22,.08]};
+const CUST={ksa:['Al Noor Hospitals','Riyadh Care Group','Gulf Medical Supply','Najd Clinics','Eastern Health Co.'],
+ uae:['Emirates Health Partners','Dubai MedCity','Abu Dhabi Clinics','Sharjah Care','Oasis Labs'],
+ egy:['Nile Medical Center','Cairo Diagnostics','Delta Hospitals','Alex Care','Giza Pharma Labs']};
+function rnd(seed){let x=Math.sin(seed)*10000;return x-Math.floor(x)}
+function series(co,yr){const g=yr===2026?1.14:1;const b=CO[co].base;return M.map((_,i)=>Math.round(b*season[i]*g*(.93+rnd(i*7+b+yr)*.14)))}
+let state={co:'all',yr:2026,cur:'SAR'};
+const fx=v=>state.cur==='USD'?v/3.75:v;
+const fmt=v=>{v=fx(v);const s=state.cur==='USD'?'$':'';const u=state.cur==='SAR'?' SAR':'';
+ if(Math.abs(v)>=1e6)return s+(v/1e6).toFixed(2)+'M'+u;if(Math.abs(v)>=1e3)return s+(v/1e3).toFixed(0)+'K'+u;return s+v.toFixed(0)+u};
+function build(){
+ const cos=state.co==='all'?Object.keys(CO):[state.co];
+ const rev=M.map((_,i)=>cos.reduce((t,c)=>t+series(c,state.yr)[i],0));
+ const prev=M.map((_,i)=>cos.reduce((t,c)=>t+series(c,state.yr-1)[i],0));
+ const target=M.map((_,i)=>Math.round(cos.reduce((t,c)=>t+CO[c].base*season[i]*(state.yr===2026?1.12:1.02),0)));
+ const tot=rev.reduce((a,b)=>a+b,0),ptot=prev.reduce((a,b)=>a+b,0);
+ const gm=.38+(state.yr===2026?.02:0)+(state.co==='egy'?-.03:state.co==='uae'?.02:0);
+ const nm=gm-.24;
+ const cats=CATS.map((_,k)=>Math.round(cos.reduce((t,c)=>t+series(c,state.yr).reduce((a,b)=>a+b,0)*MIX[c][k],0)));
+ const ar=tot*.17;const aging=[.52,.24,.13,.11].map(p=>ar*p);
+ const custs=cos.flatMap(c=>CUST[c].map((n,j)=>({n,v:Math.round(series(c,state.yr).reduce((a,b)=>a+b,0)*(.16-j*.022)*(.9+rnd(j+c.length)*.2))}))).sort((a,b)=>b.v-a.v).slice(0,5);
+ return {rev,target,tot,ptot,gp:tot*gm,pgp:ptot*(gm-.02),nm,cats,aging,ar,cash:tot*.21,custs};
+}
+function tween(el,to,f){const from=+el.dataset.v||0;el.dataset.v=to;const t0=performance.now();
+ (function step(t){const k=Math.min(1,(t-t0)/600);el.textContent=f(from+(to-from)*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(step)})(t0)}
+function delta(el,a,b){const d=(a-b)/b*100;el.textContent=(d>=0?'▲ ':'▼ ')+Math.abs(d).toFixed(1)+'%';el.className='d '+(d>=0?'up':'down')}
+
+const grad=(ctx)=>{const g=ctx.chart.ctx.createLinearGradient(0,0,0,250);g.addColorStop(0,'rgba(168,85,247,.9)');g.addColorStop(1,'rgba(102,126,234,.35)');return g};
+const money={callbacks:{label:c=>' '+c.dataset.label+': '+fmt(c.raw)}};
+const cRev=new Chart(document.getElementById('cRev'),{data:{labels:M,datasets:[
+  {type:'bar',label:'Revenue',data:[],backgroundColor:grad,borderRadius:6,maxBarThickness:28},
+  {type:'line',label:'Target',data:[],borderColor:'#22d3ee',borderDash:[5,4],pointRadius:0,tension:.35,borderWidth:2}]},
+ options:{maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{boxWidth:10}},tooltip:money},
+  scales:{y:{ticks:{callback:v=>fmt(v)}},x:{grid:{display:false}}}}});
+const cCat=new Chart(document.getElementById('cCat'),{type:'doughnut',data:{labels:CATS,datasets:[{data:[],backgroundColor:['#667eea','#a855f7','#22d3ee','#4ade80'],borderColor:'#0f0f24',borderWidth:3}]},
+ options:{maintainAspectRatio:false,cutout:'66%',plugins:{legend:{position:'bottom',labels:{boxWidth:10,padding:12}},tooltip:{callbacks:{label:c=>' '+c.label+': '+fmt(c.raw)}}}}});
+const cAge=new Chart(document.getElementById('cAge'),{type:'bar',data:{labels:['0–30','31–60','61–90','90+'],datasets:[{label:'Receivables',data:[],backgroundColor:['#4ade80','#22d3ee','#f59e0b','#f87171'],borderRadius:6,maxBarThickness:26}]},
+ options:{indexAxis:'y',maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:money},scales:{x:{ticks:{callback:v=>fmt(v)}},y:{grid:{display:false}}}}});
+
+function render(){
+ const d=build();
+ tween(document.getElementById('kRev'),d.tot,fmt);delta(document.getElementById('dRev'),d.tot,d.ptot);
+ tween(document.getElementById('kGp'),d.gp,fmt);delta(document.getElementById('dGp'),d.gp,d.pgp);
+ tween(document.getElementById('kNm'),d.nm*100,v=>v.toFixed(1)+'%');
+ tween(document.getElementById('kAr'),d.ar,fmt);tween(document.getElementById('kCash'),d.cash,fmt);
+ cRev.data.datasets[0].data=d.rev;cRev.data.datasets[1].data=d.target;cRev.update();
+ cCat.data.datasets[0].data=d.cats;cCat.update();
+ cAge.data.datasets[0].data=d.aging;cAge.update();
+ const mx=d.custs[0].v;
+ document.getElementById('tTop').innerHTML=d.custs.map(r=>`<tr><td>${r.n}</td><td class="barcell"><div class="minibar" style="width:${(r.v/mx*100).toFixed(0)}%"></div></td><td>${fmt(r.v)}</td></tr>`).join('');
+}
+document.getElementById('fCo').addEventListener('change',e=>{state.co=e.target.value;render()});
+[['fYr','yr',v=>+v],['fCur','cur',v=>v]].forEach(([id,key,cast])=>document.querySelectorAll('#'+id+' button').forEach(b=>b.addEventListener('click',()=>{
+ document.querySelectorAll('#'+id+' button').forEach(x=>x.classList.toggle('on',x===b));state[key]=cast(b.dataset.v);
+ render();if(key==='cur'){cRev.update();cAge.update()}})));
+render();
+
+// ---------- Work filter ----------
 document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));b.classList.add('on');
  document.querySelectorAll('.work .card').forEach(card=>card.classList.toggle('vis',b.dataset.f==='all'||card.dataset.c===b.dataset.f))});
 
+// ---------- Nav + top ----------
 addEventListener('scroll',()=>{document.getElementById('top').classList.toggle('show',scrollY>500);
- document.querySelectorAll('section[id]').forEach(s=>{const a=document.querySelector('.links a[href="#'+s.id+'"]');
- if(a)a.classList.toggle('active',scrollY>=s.offsetTop-120&&scrollY<s.offsetTop+s.offsetHeight-120)})});
+ document.querySelectorAll('section[id]').forEach(s=>{const l=document.querySelector('.links a[href="#'+s.id+'"]');
+ if(l)l.classList.toggle('active',scrollY>=s.offsetTop-120&&scrollY<s.offsetTop+s.offsetHeight-120)})});
 document.getElementById('yr').textContent=new Date().getFullYear();
 
+// ---------- Particle background ----------
 const cv=document.getElementById('bg'),x=cv.getContext('2d');let P=[];
 function size(){cv.width=innerWidth;cv.height=innerHeight;P=Array.from({length:Math.min(80,innerWidth/15)},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4}))}
 size();addEventListener('resize',size);
